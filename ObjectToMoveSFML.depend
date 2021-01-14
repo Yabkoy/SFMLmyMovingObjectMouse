@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1607108771 source:c:\users\yabus\documents\cppsfml\objecttomovesfml\main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+
