@@ -1,22 +1,15 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-using std::cout;
-using std::endl;
-using std::string;
-
-void moveOBJ(sf::CircleShape &CS, double mainX, double mainY, double speed=1)
+void moveOBJ(sf::CircleShape &CS, const double& mainX, const double& mainY, double speed=1)
 {
-    double objX = CS.getPosition().x;
-    double objY = CS.getPosition().y;
-
-    CS.move((mainX - objX)/speed , (mainY - objY)/speed);
+    CS.move((mainX - CS.getPosition().x)/speed , (mainY - CS.getPosition().y)/speed);
+    CS.rotate(speed/10000);
 }
-
 
 int main()
 {
-    sf::RenderWindow RW(sf::VideoMode(1920, 1080), "Moving", sf::Style::Fullscreen);
+    sf::RenderWindow RW(sf::VideoMode(800, 600), "Moving");
 
     sf::CircleShape mainObject(50, 8);
     mainObject.setOrigin(sf::Vector2f(50, 50));
@@ -32,20 +25,15 @@ int main()
             {
                 RW.close();
             }
-            if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-            {
-                ;
-            }
         }
 
         moveOBJ(mainObject, sf::Mouse::getPosition(RW).x, sf::Mouse::getPosition(RW).y, 500);
-        cout<<mainObject.getPosition().x<<" - "<<mainObject.getPosition().y<<endl;
+        std::cout<<mainObject.getPosition().x<<" - "<<mainObject.getPosition().y<<std::endl;
 
         RW.clear(sf::Color::Black);
         RW.draw(mainObject);
         RW.display();
 
     }
-
     return 0;
 }
